@@ -64,6 +64,7 @@ AI           Cursor · Claude Code · Codex· LLM-integrated pipelines
 ```
 ## Writing
 [How We Shipped 60 Design System Components in 5 Weeks](https://dev.to/akollu72/how-we-shipped-60-design-system-components-in-5-weeks-using-figma-as-the-single-source-of-truth-1lkc)
+[Why AI Keeps Generating the Wrong Design Tokens](https://dev.to/akollu72/why-ai-keeps-generating-the-wrong-design-tokens-and-how-i-fixed-it-with-figmas-api-17o4)
 
 ## Connect
 
