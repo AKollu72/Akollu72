@@ -9,29 +9,26 @@ I build tooling and infrastructure that makes frontend engineering faster
 and more reliable. Currently at Socratics.ai, an AI-driven financial
 modeling platform in the Bay Area.
 
-## What I've shipped
+## Fixel — Figma-to-React pipeline with continuous verification
 
-### Figment — Design system pipeline
+[![npm](https://img.shields.io/npm/v/fixel)](https://www.npmjs.com/package/fixel)
+[![downloads](https://img.shields.io/npm/dw/fixel)](https://www.npmjs.com/package/fixel)
 
-A three-stage pipeline that makes Figma the literal source of truth
-for React design systems.
+**[github.com/AKollu72/fixel](https://github.com/AKollu72/fixel)** · built independently, live on npm
 
-**Stage 1:** Token reconnaissance. Fetches Figma fills for a target node,
-compares against the existing token file, outputs a ready-to-paste patch
-for missing tokens. One API call, thirty seconds.
+LLMs generate design values that are close-but-not-exact — a border radius
+one step off the scale, a raw hex instead of the semantic token. Nothing
+crashes; it's quietly wrong. Fixel fixes this architecturally:
 
-**Stage 2:** Deterministic component generation. Every value with an exact
-answer (typography variants, spacing, icon dimensions) is resolved
-algorithmically before the generation model sees any data. Output is
-scanned for prohibited patterns (raw hex values, incorrect border radii,
-missing imports) and rejected if any are found.
-
-**Stage 3:** Automated drift detection. `verify-figma` runs in CI on every
-PR, fetching live Figma data and comparing it against the component source.
-Pull requests that introduce drift do not merge.
-
-**Results:** 60 components. 3,077 tests. Zero raw hex values. 35 business
-days. Reduced per-component time from 4-5 engineer-days to less than 1 day.
+1. **Deterministic resolution before generation** — color, spacing,
+   typography, radius resolved algorithmically from Figma node data; the
+   model never guesses at values with definitive answers
+2. **Constrained generation** — the LLM handles structure and composition only
+3. **Prohibited-pattern enforcement** — raw hex, wrong radius scales, and
+   missing imports abort generation before any file is written
+4. **Continuous CI verification** — every PR re-checks the committed spec;
+   drift blocks the merge and posts back onto the Figma canvas as anchored
+   comments, where designers actually work
 
 ### Auth0 enterprise migration
 
@@ -52,6 +49,15 @@ and fixing what they produce.
 Stale closures inside polling intervals, race conditions between Redux
 thunks, MUI DataGrid infinite render loops, Hasura webhook sync failures.
 Root cause is usually three layers deeper than the symptom.
+
+## Day job
+
+Software engineer at an AI-powered financial modeling platform. Shipped 60+
+React components with 3,077 automated tests in 35 days. Led an Auth0
+enterprise migration (SPA → Regular Web App, three environments, OAuth 2.0,
+multi-tenant) and resolved a production auth failure two engineers before me
+couldn't. Debugging specialty: the root cause is usually three layers deeper
+than the symptom.
 
 ## Stack
 
